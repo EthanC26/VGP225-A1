@@ -5,7 +5,7 @@ public class Cells : MonoBehaviour
 {
     public int Index; //cell index in the grid 0-8
 
-    private GameManger gm;
+    private GameManager gm;
     private Button btn;
     private Image img;
 
@@ -14,7 +14,7 @@ public class Cells : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gm = FindFirstObjectByType<GameManger>();
+        gm = FindFirstObjectByType<GameManager>();
         btn = GetComponent<Button>();
         img = GetComponent<Image>();
         btn.onClick.AddListener(OnClick);
