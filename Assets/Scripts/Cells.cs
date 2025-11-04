@@ -43,4 +43,9 @@ public class Cells : MonoBehaviour
     {
         btn.interactable = false;
     }
+
+    private void OnDestroy()
+    {
+        btn.onClick.RemoveAllListeners();
+    }
 }

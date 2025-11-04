@@ -7,14 +7,20 @@ public class GameManger : MonoBehaviour
     private int[] board = new int[9]; // 0 = empty, 1 = X, -1 = O
     public bool isPlayerTurn; // true = O's turn, false = X's turn
 
+    public bool PlayerWin;
+    public bool AIWin;
+    public bool Draw;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         for (int i = 0; i < 9; i++) board[i] = 0;
-        isPlayerTurn = true; //  (O) starts first
-        //Invoke(nameof(AIMove), 0.5f);
 
+        PlayerWin = false;
+        AIWin = false;
+        Draw = false;
+
+        isPlayerTurn = true; //  (O) starts first
     }
 
     public void PlayerMove(int Index)
@@ -33,12 +39,14 @@ public class GameManger : MonoBehaviour
         if (winner == -1)
         {
             Debug.Log("O Wins!");
+            PlayerWin = true;
             return;
         }
 
         if (IsBoardFull())
         {
             Debug.Log("It's a Draw!");
+            Draw = true;
             return;
         }
 
@@ -58,11 +66,13 @@ public class GameManger : MonoBehaviour
         if (winner == 1)
         {
             Debug.Log("X Wins!");
+            AIWin = true;
             return;
         }
         if (IsBoardFull())
         {
             Debug.Log("It's a Draw!");
+            Draw = true;
             return;
         }
         isPlayerTurn = true;

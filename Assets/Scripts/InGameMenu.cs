@@ -9,6 +9,7 @@ public class InGameMenu : MonoBehaviour
     public Button MainMenuBtn;
 
     public TMP_Text TurnText;
+    public TMP_Text winnerText;
 
     private GameManger gm;
 
@@ -30,7 +31,9 @@ public class InGameMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gm.isPlayerTurn)
+        Winner();
+
+        if (gm.isPlayerTurn)
         {
             TurnText.text = "Player's Turn";
         }
@@ -39,4 +42,24 @@ public class InGameMenu : MonoBehaviour
             TurnText.text = "AI's Turn";
         }
     }
+
+    private void Winner()
+    {
+        if(gm.PlayerWin == true)
+            winnerText.text = "HOWWWWWWW!";
+        else if (gm.AIWin == true)
+            winnerText.text = "AI Wins!";
+        else if (gm.Draw == true)
+            winnerText.text = "It's a Draw!";
+        else
+            winnerText.text = "";
+    }
+
+    private void OnDestroy()
+    {
+        RestBtn.onClick.RemoveAllListeners();
+        MainMenuBtn.onClick.RemoveAllListeners();
+    }
+
+
 }
